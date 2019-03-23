@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
 
-    var miLati: Double? = null
-    var miLongi: Double? = null
+    //var miLati: Double? = null
+    //var miLongi: Double? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
      * CON EL THREAD QUE ESTA CONSTANTEMENTE ACTUALIZANDOSE
      */
     @SuppressLint("MissingPermission")
-    fun obtenerUbicacion(momento: String) {
+    fun obtenerUbicacion() {
 
 
         // Este es otro cdigo
@@ -95,17 +95,19 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
 
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
-                println("PPPPEEEEERRRRRROOOO");
+                println("PPPPEEEEERRRRRROOOO")
+                Constantes.milati=location?.latitude
+                Constantes.milongi=location?.longitude
 
                 Toast.makeText(
                     applicationContext,
-                    "Lati " + location?.latitude + " Longi" + location?.longitude + " alti " + location?.altitude
+                    "Lati " + Constantes.milati + " Longi" + Constantes.milongi + " alti " + location?.altitude
                     ,
                     Toast.LENGTH_LONG
                 ).show()
 
-                miLati = location?.latitude
-                miLongi = location?.longitude
+                //miLati = location?.latitude
+                //miLongi = location?.longitude
 
             }
 
