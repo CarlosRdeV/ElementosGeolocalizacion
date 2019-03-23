@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.widget.Toast
 import com.google.android.gms.location.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsResultCallback  {
 
@@ -38,8 +39,14 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
                 }
             }
         }
+
         enableMyLocation()
+
+        btn_localizar.setOnClickListener{
+            obtenerUbicacion()
+        }
     }
+
 
     private fun enableMyLocation() {
         if (ContextCompat.checkSelfPermission(
