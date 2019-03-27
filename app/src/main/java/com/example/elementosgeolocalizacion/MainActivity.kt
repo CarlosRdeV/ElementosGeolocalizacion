@@ -2,6 +2,7 @@ package com.example.elementosgeolocalizacion
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.support.v7.app.AppCompatActivity
@@ -41,9 +42,15 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
         }
 
         enableMyLocation()
+        //Invocamos el metodo de obtener ubicacion
+        obtenerUbicacion()
 
         btn_localizar.setOnClickListener{
+            //Vamos a volver a forzar la ubicacion para cada clickeo
             obtenerUbicacion()
+            //Aqui vamos a navegar al mapa
+            var i=Intent(this, MapsActivity::class.java);
+            startActivity(i)
         }
     }
 
@@ -106,12 +113,12 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
                 Constantes.milati=location?.latitude
                 Constantes.milongi=location?.longitude
 
-                Toast.makeText(
+                /*Toast.makeText(
                     applicationContext,
                     "Lati " + Constantes.milati + " Longi" + Constantes.milongi + " alti " + location?.altitude
                     ,
                     Toast.LENGTH_LONG
-                ).show()
+                ).show() */
 
                 //miLati = location?.latitude
                 //miLongi = location?.longitude
