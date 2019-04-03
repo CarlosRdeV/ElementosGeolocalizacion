@@ -13,14 +13,13 @@ class TareaLocalizacion(private var ctx: Context?, private var usuario: Usuario?
                           private var activity: MainActivity?)
     : AsyncTask<Void,Void,Void>() {
 
+    var estatus=Estatus()
+
     override fun onPostExecute(result: Void?) {
 
         //Invocamos nuestra vistaa del MainActivity
       //  activity?.findViewById<TextView>(R.id.txtActual)?.text=estacion?.temp_c
-
-
-
-
+        Toast.makeText(ctx,estatus.mensaje,Toast.LENGTH_LONG).show()
     }
 
     override fun onPreExecute() {
@@ -39,10 +38,10 @@ class TareaLocalizacion(private var ctx: Context?, private var usuario: Usuario?
             val maper = ObjectMapper()
             //  usuarios = maper.readValue(estring, object : TypeReference<ArrayList<Usuario>>() {})
 
-            var usuario=Usuario()
+
             val respuesta = restTemplate.postForObject(url, usuario , String::class.java)
 
-            var estacion = maper.readValue(respuesta, Estacion::class.java)
+            estatus = maper.readValue(respuesta, Estatus::class.java)
 
 
             println("DESPUES DE REST");
