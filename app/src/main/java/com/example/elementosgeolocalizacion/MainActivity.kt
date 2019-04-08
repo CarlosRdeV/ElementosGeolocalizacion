@@ -48,10 +48,11 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
         btn_localizar.setOnClickListener{
             //Vamos a volver a forzar la ubicacion para cada clickeo
             obtenerUbicacion()
+
             var usuario=Usuario()
             var loca=Localizacion()
-            usuario.id=2
-            usuario.nombre="Juan"
+            usuario.id=txtInputID.text.toString().toInt()
+            usuario.nombre=txtInputNombre.text.toString()
             loca.lon=Constantes.milongi
             loca.lat=Constantes.milati
             usuario.localizacion=loca
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
             //Aqui vamos a navegar al mapa
             var i=Intent(this, MapsActivity::class.java);
             startActivity(i)
+
         }
     }
 
